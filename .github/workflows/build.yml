@@ -29,13 +29,18 @@ jobs:
         run: npm install -g @expo/cli
 
       - name: Prebuild Android
-        run: npx expo prebuild --platform android --no-install
+        run: npx expo prebuild --platform android --no-install --clean
+
+      - name: Create missing color resource
+        run: |
+          mkdir -p android/app/src/main/res/values
+          echo '<?xml version="1.0" encoding="utf-8"?><resources><color name="splashscreen_background">#ffffff</color></resources>' > android/app/src/main/res/values/colors.xml
 
       - name: Build APK
-        run: cd android && ./gradlew assembleDebug
+        run: cd android && ./gradlew assembleDebug --no-daemon
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: app-build
+          name: app-release
           path: android/app/build/outputs/apk/debug/app-debug.apk
