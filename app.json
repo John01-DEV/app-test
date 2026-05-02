@@ -3,8 +3,14 @@
     "name": "MeuApp",
     "slug": "meu-app",
     "version": "1.0.0",
+    "splash": {
+      "backgroundColor": "#ffffff"
+    },
     "android": {
-      "package": "com.meuapp.app"
+      "package": "com.meuapp.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#ffffff"
+      }
     }
   }
 }
